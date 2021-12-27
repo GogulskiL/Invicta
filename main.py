@@ -48,7 +48,8 @@ def connect_database(database):
 def create_table_user(databes):
     conn = connect_database(databes)
     c = conn.cursor()
-    c.execute(""" CREATE TABLE IF NOT EXISTS users (id INTEGER, name TEXT, city TEXT); """)
+    c.execute(
+        """ CREATE TABLE IF NOT EXISTS users (id INTEGER, name TEXT, city TEXT); """)
     conn.commit()
     c.close()
     conn.close()
@@ -57,7 +58,8 @@ def create_table_user(databes):
 def create_table_todos(database):
     conn = connect_database(database)
     c = conn.cursor()
-    c.execute(""" CREATE TABLE IF NOT EXISTS todos (userId INTEGER, id INTEGER, title TEXT, completed INTEGER);""")
+    c.execute(
+        """ CREATE TABLE IF NOT EXISTS todos (userId INTEGER, id INTEGER, title TEXT, completed INTEGER);""")
     conn.commit()
     c.close()
     conn.close()
@@ -182,5 +184,5 @@ def get_file():
                      as_attachment=True)
 
 
-# if __name__ == '__main__':
-#     app.run(debug=True, port=8080)
+if __name__ == '__main__':
+    app.run(debug=False, port=8080)

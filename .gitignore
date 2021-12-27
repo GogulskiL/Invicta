@@ -129,6 +129,6 @@ dmypy.json
 .pyre/
 
 # Project file
-.db
-.csv
+import_data_db.csv
+demo.db
 
