@@ -129,6 +129,7 @@ dmypy.json
 .pyre/
 
 # Project file
-\import_data_db.csv
-\demo.db
+.import_data_db.csv
+.demo.db
 
+.vscode/settings.json
