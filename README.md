@@ -7,5 +7,5 @@ solution of the task
 
 3.next step -> pip3 install -r requirements.txt
 
-4.run the script, the excel file will be created in the folder
+4.run the script
 
