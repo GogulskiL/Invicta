@@ -167,10 +167,11 @@ def csv_file_create(database):
 
 def main(url_user, url_todos, database):
     users(url_user, database)
-    todos(url_todos,database)
+    todos(url_todos, database)
     csv_file_create(database)
 
-main(url_user,url_todos, database)    
+
+main(url_user, url_todos, database)
 
 
 app = Flask(__name__)
