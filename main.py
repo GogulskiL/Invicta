@@ -14,29 +14,28 @@ database = "demo.db"
 
 def get_json(url):
     response = requests.get(url)
-    data = json.loads(response.text)
-    return data
+    return json.loads(response.text)
 
 
 def user_json_praser(data_json_user):
     users = []
-    for i in range(len(data_json_user)):
+    for one_user in range(len(data_json_user)):
         row = {}
-        row["id"] = data_json_user[i]["id"]
-        row["name"] = data_json_user[i]["name"]
-        row["city"] = data_json_user[i]["address"]["city"]
+        row["id"] = data_json_user[one_user]["id"]
+        row["name"] = data_json_user[one_user]["name"]
+        row["city"] = data_json_user[one_user]["address"]["city"]
         users.append(row)
     return users
 
 
 def todos_json_praser(data_jason_todos):
     todos = []
-    for i in range(len(data_jason_todos)):
+    for one_todos in range(len(data_jason_todos)):
         row = {}
-        row["userId"] = data_jason_todos[i]["userId"]
-        row["id"] = data_jason_todos[i]["id"]
-        row["title"] = data_jason_todos[i]["title"]
-        row["completed"] = data_jason_todos[i]["completed"]
+        row["userId"] = data_jason_todos[one_todos]["userId"]
+        row["id"] = data_jason_todos[one_todos]["id"]
+        row["title"] = data_jason_todos[one_todos]["title"]
+        row["completed"] = data_jason_todos[one_todos]["completed"]
         todos.append(row)
     return todos
 
@@ -49,10 +48,7 @@ def connect_database(database):
 def create_table_user(databes):
     conn = connect_database(databes)
     c = conn.cursor()
-    try:
-        c.execute(""" CREATE TABLE users (id INTEGER, name TEXT, city TEXT) """)
-    except Error as e:
-        print("Tabela już istnieje")
+    c.execute(""" CREATE TABLE IF NOT EXISTS users (id INTEGER, name TEXT, city TEXT); """)
     conn.commit()
     c.close()
     conn.close()
@@ -61,11 +57,7 @@ def create_table_user(databes):
 def create_table_todos(database):
     conn = connect_database(database)
     c = conn.cursor()
-    try:
-        c.execute(
-            """ CREATE TABLE todos (userId INTEGER, id INTEGER, title TEXT, completed INTEGER)""")
-    except Error as e:
-        print("Tabela już istnieje")
+    c.execute(""" CREATE TABLE IF NOT EXISTS todos (userId INTEGER, id INTEGER, title TEXT, completed INTEGER);""")
     conn.commit()
     c.close()
     conn.close()
@@ -190,5 +182,5 @@ def get_file():
                      as_attachment=True)
 
 
-if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+# if __name__ == '__main__':
+#     app.run(debug=True, port=8080)
