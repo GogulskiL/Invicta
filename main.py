@@ -78,7 +78,7 @@ def fill_user_column(url, database):
             """ SELECT * FROM users WHERE id = ? AND name =? AND city = ? """, (data_tuple))
         result = c.fetchone()
         if result:
-            print("Dane już istnieją")
+            a = 1
         else:
             sql_insert = (
                 """ INSERT INTO users (id, name, city) VALUES (?, ?, ?) """)
@@ -106,7 +106,7 @@ def fill_todos_column(url, database):
             """ SELECT * FROM todos WHERE userId = ? AND id = ? AND title = ? AND completed = ? """, (data_tuple))
         result = c.fetchone()
         if result:
-            print("Dane już istnieją")
+            a = 1
         else:
             sql_insert = (
                 """ INSERT INTO todos (userId, id, title, completed) VALUES (?, ?, ?, ?) """)
